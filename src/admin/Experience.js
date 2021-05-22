@@ -4,7 +4,6 @@ import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const Experience = () => {
   const [experiences, setExperience] = useState([]);
-  const [slug, setSlug] = useState("");
   useEffect(() => {
     loadingAllExperience();
     console.log(experiences);
