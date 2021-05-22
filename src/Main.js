@@ -49,19 +49,6 @@ const Main = () => {
     loadResumeFromPath(resumePath);
   };
 
-  // const swapCurrentlyActiveLanguage = (oppositeLangIconId) => {
-  //   var pickedLangIconId =
-  //     oppositeLangIconId === window.$primaryLanguageIconId
-  //       ? window.$secondaryLanguageIconId
-  //       : window.$primaryLanguageIconId;
-  //   document
-  //     .getElementById(oppositeLangIconId)
-  //     .removeAttribute("filter", "brightness(40%)");
-  //   document
-  //     .getElementById(pickedLangIconId)
-  //     .setAttribute("filter", "brightness(40%)");
-  // };
-
   const componentDidMount = () => {
     loadSharedData();
     applyPickedLanguage(window.$primaryLanguage);
@@ -103,17 +90,40 @@ const Main = () => {
     console.log(social);
   };
 
+  const scrollBelow = () => {
+    window.scrollTo(750, 750);
+    // document.getElementById("scroller").scroll(0, 0);
+  };
   return (
     <>
       <Header sharedData={sharedData.basic_info} />
-      <div className="col-md-12 mx-auto text-center language">
-        <span key="linkedin" className="m-4">
-          <a
-            href="https://www.linkedin.com/in/jayamvimal/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
+      <span key="linkedin" className="fixed-bottom">
+        <a
+          style={{
+            fontSize: "150%",
+            position: "absolute",
+            bottom: "5px",
+            right: "5px",
+            margin: "0",
+            padding: "5px",
+          }}
+          href="https://www.linkedin.com/in/jayamvimal/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
+        </a>
+      </span>
+      <div
+        className="col-md-12 mx-auto text-center language"
+        onClick={scrollBelow}
+      >
+        <span key="linkedin" className="m-2">
+          <a target="_blank" rel="noopener noreferrer">
+            <i
+              className="fas fa-angle-double-down"
+              style={{ fontSize: "200%" }}
+            ></i>
           </a>
         </span>
       </div>
