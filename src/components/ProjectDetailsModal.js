@@ -25,6 +25,7 @@ class ProjectDetailsModal extends Component {
       var title = this.props.data.title;
       var description = this.props.data.description;
       var url = this.props.data.url;
+      var youtube = this.props.data.youtube;
 
       if (this.props.data.technologies) {
         var tech = technologies.map((icons, i) => {
@@ -92,7 +93,7 @@ class ProjectDetailsModal extends Component {
           </div>
           <div className="col-md-10 mx-auto">
             <h3 style={{ padding: "5px 5px 0 5px" }}>
-              {url ? (
+              {youtube ? (
                 <div>
                   <ModalVideo
                     channel="youtube"

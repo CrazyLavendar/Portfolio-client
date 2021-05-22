@@ -4,9 +4,9 @@ import ExperienceCreateForm from "./ExperienceCreateForm";
 
 const ExperienceCreate = ({ history }) => {
   const initialState = {
-    company: "Front End Kumar edited Org",
-    title: "React-End Developer",
-    years: "10.2019 - present",
+    company: "",
+    title: "",
+    years: "",
     mainTech: "",
     technologies: "",
   };

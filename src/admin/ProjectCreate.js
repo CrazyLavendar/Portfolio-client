@@ -7,12 +7,12 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 const ProjectCreate = () => {
   const initialState = {
-    title: "Animal Shelter",
-    startDate: "2020 - present ",
-    description:
-      "The most expanded application I had opportunity to work with. I've learned many technologies and my code was reviewed by awesome curator. Application handles all adoption processess and allows to store all evidence on adopting animals from animal shelter.",
+    title: "",
+    startDate: "",
+    description:"",
     images: [],
     url: "",
+    youtube:"",
     technologies: [],
   };
 

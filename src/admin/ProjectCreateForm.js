@@ -10,7 +10,7 @@ const ProjectCreateForm = ({
   values,
   techOptions,
 }) => {
-  const { title, startDate, description, url, technologies } = values;
+  const { title, startDate, description, url, youtube,  technologies } = values;
   return (
     <form onSubmit={handleSubmit}>
       <div className="form-group">
@@ -37,7 +37,7 @@ const ProjectCreateForm = ({
       </div>
       <div className="form-group">
         <label>Description</label>
-        <input
+        <textarea 
           type="text"
           name="description"
           className="form-control"
@@ -52,6 +52,17 @@ const ProjectCreateForm = ({
           name="url"
           className="form-control"
           value={url}
+          onChange={handleChange}
+        />
+      </div>
+
+        <div className="form-group">
+        <label> YouTube Video ID </label>
+        <input
+          type="text"
+          name="youtube"
+          className="form-control"
+          value={youtube}
           onChange={handleChange}
         />
       </div>
