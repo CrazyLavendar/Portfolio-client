@@ -6,7 +6,6 @@ const Experience = () => {
   const [experiences, setExperience] = useState([]);
   useEffect(() => {
     loadingAllExperience();
-    console.log(experiences);
   }, []);
 
   const loadingAllExperience = () => {

@@ -20,7 +20,7 @@ const ExperienceUpdate = ({ match, history }) => {
 
   useEffect(() => {
     loadOneExperience();
-  }, [match, history]);
+  }, [match, history, loadOneExperience()]);
 
   const loadOneExperience = () => {
     getExperienceOne(slug)

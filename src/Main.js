@@ -25,7 +25,6 @@ const Main = () => {
     extractProjects();
     extractSkills();
     loadSocialNetwork();
-    // console.log(state);
   }, []);
 
   const extractExperience = () =>
@@ -100,12 +99,12 @@ const Main = () => {
       <span key="linkedin" className="fixed-bottom">
         <a
           style={{
-            fontSize: "150%",
+            fontSize: "165%",
             position: "absolute",
             bottom: "5px",
             right: "5px",
-            margin: "0",
-            padding: "5px",
+            margin: "5px",
+            padding: "0px",
           }}
           href="https://www.linkedin.com/in/jayamvimal/"
           target="_blank"
