@@ -97,8 +97,11 @@ const Main = () => {
     <>
       <Header sharedData={sharedData.basic_info} />
 
-      <div className="col-md-12 mx-auto text-center language">
-        <span key="ScrollDown" className="m-2" onClick={scrollBelow}>
+      <div
+        onClick={scrollBelow}
+        className="col-md-12 mx-auto text-center language"
+      >
+        <span key="ScrollDown" className="m-2">
           <a target="_blank" rel="noopener noreferrer">
             <i
               className="fas fa-angle-double-down"
