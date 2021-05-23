@@ -1,11 +1,7 @@
 {
   "basic_info": {
     "name": "Vimal Kumar",
-    "titles": [
-      "XR - Engineer",
-      "FUll Stack Developer",
-      "PURSUING MASTER's @ NIT W"
-    ],
+    "titles": ["XR - Engineer", "FUll Stack Developer", "Master's @ NIT W"],
     "social": [
       {
         "name": "github",

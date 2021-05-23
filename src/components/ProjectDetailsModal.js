@@ -6,6 +6,7 @@ import AwesomeSliderStyles2 from "../scss/dark-slider.scss";
 import "react-awesome-slider/dist/custom-animations/scale-out-animation.css";
 import ModalVideo from "react-modal-video";
 import "react-modal-video/scss/modal-video.scss";
+
 class ProjectDetailsModal extends Component {
   constructor() {
     super();
@@ -92,13 +93,13 @@ class ProjectDetailsModal extends Component {
             </AwesomeSlider>
           </div>
           <div className="col-md-10 mx-auto">
-            <h3 style={{ padding: "5px 5px 0 5px" }}>
+            <h3>
               {youtube ? (
                 <div>
                   <ModalVideo
                     channel="youtube"
                     isOpen={this.state.isOpen}
-                    videoId="P8Kt6Abq_rM"
+                    videoId={youtube}
                     theme="dark"
                     onClose={() => this.setState({ isOpen: false })}
                   />
@@ -106,12 +107,12 @@ class ProjectDetailsModal extends Component {
                     onClick={this.openModal}
                     className="btn btn-secondary btn-lg btn-block"
                   >
-                    Video Demo
+                    Video
                   </button>
                 </div>
               ) : null}
               <br />
-              {title}
+
               {url ? (
                 <a
                   href={url}
@@ -119,6 +120,7 @@ class ProjectDetailsModal extends Component {
                   rel="noopener noreferrer"
                   className="link-href"
                 >
+                  {title}
                   <i
                     className="fas fa-external-link-alt"
                     style={{ marginLeft: "10px" }}

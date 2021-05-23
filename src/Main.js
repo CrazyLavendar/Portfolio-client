@@ -96,32 +96,13 @@ const Main = () => {
   return (
     <>
       <Header sharedData={sharedData.basic_info} />
-      <span key="linkedin" className="fixed-bottom">
-        <a
-          style={{
-            fontSize: "165%",
-            position: "absolute",
-            bottom: "5px",
-            right: "5px",
-            margin: "5px",
-            padding: "0px",
-          }}
-          href="https://www.linkedin.com/in/jayamvimal/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
-        </a>
-      </span>
-      <div
-        className="col-md-12 mx-auto text-center language"
-        onClick={scrollBelow}
-      >
-        <span key="linkedin" className="m-2">
+
+      <div className="col-md-12 mx-auto text-center language">
+        <span key="ScrollDown" className="m-2" onClick={scrollBelow}>
           <a target="_blank" rel="noopener noreferrer">
             <i
               className="fas fa-angle-double-down"
-              style={{ fontSize: "200%" }}
+              style={{ fontSize: "175%" }}
             ></i>
           </a>
         </span>
@@ -142,6 +123,23 @@ const Main = () => {
         resumeBasicInfo={resumeData.basic_info}
       />
       <Footer sharedBasicInfo={sharedData.basic_info} />
+      <span key="linkedin" className="fixed-bottom">
+        <a
+          style={{
+            fontSize: "165%",
+            position: "absolute",
+            bottom: "5px",
+            right: "5px",
+            margin: "5px",
+            padding: "0px",
+          }}
+          href="https://www.linkedin.com/in/jayamvimal/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
+        </a>
+      </span>
     </>
   );
 };

@@ -25,7 +25,6 @@ class Header extends Component {
   }
 
   render() {
-    // console.log(this.props.sharedData);
     if (this.props.sharedData) {
       var name = this.props.sharedData.name;
       this.titles = this.props.sharedData.titles
@@ -62,7 +61,6 @@ class Header extends Component {
               <div className="title-container">
                 <HeaderTitleTypeAnimation />
               </div>
-              <br /> <br />
               <Switch
                 checked={this.state.checked}
                 onChange={this.onThemeSwitchChange}
