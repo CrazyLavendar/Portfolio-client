@@ -1,19 +1,25 @@
-import React from "react";
-import "./App.scss";
-import Main from "./Main";
+import React, { lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
+import { LoadingOutlined } from "@ant-design/icons";
 
-import Experience from "./admin/Experience";
-import ExperienceCreate from "./admin/ExperienceCreate";
-import ExperienceUpdate from "./admin/ExperienceUpdate";
-
-import Project from "./admin/Project";
-import ProjectCreate from "./admin/ProjectCreate";
-import ProjectUpdate from "./admin/ProjectUpdate";
+const Main = lazy(() => import("./Main"));
+const Experience = lazy(() => import("./admin/Experience"));
+const ExperienceCreate = lazy(() => import("./admin/ExperienceCreate"));
+const ExperienceUpdate = lazy(() => import("./admin/ExperienceUpdate"));
+const Project = lazy(() => import("./admin/Project"));
+const ProjectCreate = lazy(() => import("./admin/ProjectCreate"));
 
 const App = () => {
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="col text-center p-5">
+          __Loading
+          <LoadingOutlined />
+          Vimal's Site __
+        </div>
+      }
+    >
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/experience" component={Experience} />
@@ -25,9 +31,8 @@ const App = () => {
         />
         <Route exact path="/project" component={Project} />
         <Route exact path="/project/create" component={ProjectCreate} />
-        <Route exact path="/project/update/:slug" component={ProjectUpdate} />
       </Switch>
-    </>
+    </Suspense>
   );
 };
 

@@ -1,15 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import $ from "jquery";
+import { LoadingOutlined } from "@ant-design/icons";
 import "./Main.scss";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
+
 import { getExperience } from "./functions/experience";
 import { getProjects } from "./functions/project";
 import { getTechs } from "./functions/techs";
+
+const Header = lazy(() => import("./components/Header"));
+const Footer = lazy(() => import("./components/Footer"));
+const About = lazy(() => import("./components/About"));
+const Experience = lazy(() => import("./components/Experience"));
+const Projects = lazy(() => import("./components/Projects"));
+const Skills = lazy(() => import("./components/Skills"));
 
 const Main = () => {
   const [experience, setExperience] = useState([]);
@@ -94,7 +97,15 @@ const Main = () => {
     // document.getElementById("scroller").scroll(0, 0);
   };
   return (
-    <>
+    <Suspense
+      fallback={
+        <div className="col text-center p-5">
+          __ Loading
+          <LoadingOutlined />
+          Vimal's Site__
+        </div>
+      }
+    >
       <Header sharedData={sharedData.basic_info} />
 
       <div
@@ -143,7 +154,7 @@ const Main = () => {
           <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
         </a>
       </span>
-    </>
+    </Suspense>
   );
 };
 
