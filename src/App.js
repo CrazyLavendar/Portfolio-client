@@ -2,10 +2,6 @@ import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
 import "./App.scss";
-import sharedDataJson from "./portfolio_shared_data.json";
-import primaryDataJson from "./res_primaryLanguage.json";
-
-// const Main = lazy(() => import("./Main"));
 
 import { getExperience } from "./functions/experience";
 import { getProjects } from "./functions/project";
@@ -25,17 +21,47 @@ const ProjectAdmin = lazy(() => import("./admin/Project"));
 const ProjectCreate = lazy(() => import("./admin/ProjectCreate"));
 
 const App = () => {
+  const sharedDataJson = {
+    basic_info: {
+      name: "Vimal Kumar",
+      titles: ["XR - Engineer", "FUll Stack Developer", "Master's @ NIT W"],
+      social: [
+        {
+          name: "github",
+          url: "https://github.com/CrazyLavendar",
+          class: "fab fa-github",
+        },
+        {
+          name: "linkedin",
+          url: "https://www.linkedin.com/in/jayamvimal/",
+          class: "fab fa-linkedin-in",
+        },
+      ],
+      image: "myProfile.jpg",
+    },
+  };
+
+  const primaryDataJson = {
+    basic_info: {
+      description_header: "Hi",
+      description:
+        "👋 I'm Vimal Kumar. I am a fitness Enthusiast , Chess player and Software Developer. I have hands-on experience in XR domain , Full Stack Development & Cloud deployment. I am efficient and knowledgable in Data Structures & Algorithms. I love competetive coding.",
+      section_name: {
+        about: "About me",
+        projects: "Projects",
+        skills: "My Skills",
+        experience: "Experience",
+      },
+    },
+  };
+
   const [experience, setExperience] = useState([]);
   const [projects, setProjects] = useState([]);
   const [skills, setSkills] = useState([]);
-  const [resumeData, setResumeData] = useState({});
-  const [sharedData, setSharedData] = useState({});
-  // const [social, setSocial] = useState([]);
+  const [resumeData] = useState(primaryDataJson);
+  const [sharedData] = useState(sharedDataJson);
 
   useEffect(() => {
-    setResumeData(primaryDataJson);
-    setSharedData(sharedDataJson);
-
     const extractSkills = () =>
       getTechs()
         .then((e) => setSkills(e.data))
