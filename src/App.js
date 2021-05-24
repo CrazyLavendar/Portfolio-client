@@ -36,15 +36,6 @@ const App = () => {
       loadSharedData();
       applyPickedLanguage(window.$primaryLanguage);
     };
-    const extractExperience = () =>
-      getExperience()
-        .then((e) => setExperience(e.data))
-        .catch((err) => console.log(err.data));
-
-    const extractProjects = () =>
-      getProjects()
-        .then((e) => setProjects(e.data))
-        .catch((err) => console.log(err.data));
 
     const extractSkills = () =>
       getTechs()
@@ -92,6 +83,16 @@ const App = () => {
     extractProjects();
     extractSkills();
   }, []);
+
+  const extractExperience = () =>
+    getExperience()
+      .then((e) => setExperience(e.data))
+      .catch((err) => console.log(err.data));
+
+  const extractProjects = () =>
+    getProjects()
+      .then((e) => setProjects(e.data))
+      .catch((err) => console.log(err.data));
 
   const scrollBelow = () => {
     window.scrollTo(750, 750);
