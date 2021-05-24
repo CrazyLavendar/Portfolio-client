@@ -1,8 +1,9 @@
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { LoadingOutlined } from "@ant-design/icons";
-import $ from "jquery";
 import "./App.scss";
+import sharedDataJson from "./portfolio_shared_data.json";
+import primaryDataJson from "./res_primaryLanguage.json";
 
 // const Main = lazy(() => import("./Main"));
 
@@ -20,7 +21,7 @@ const Skills = lazy(() => import("./components/Skills"));
 const ExperienceAdmin = lazy(() => import("./admin/Experience"));
 const ExperienceCreate = lazy(() => import("./admin/ExperienceCreate"));
 const ExperienceUpdate = lazy(() => import("./admin/ExperienceUpdate"));
-const Project = lazy(() => import("./admin/Project"));
+const ProjectAdmin = lazy(() => import("./admin/Project"));
 const ProjectCreate = lazy(() => import("./admin/ProjectCreate"));
 
 const App = () => {
@@ -32,65 +33,28 @@ const App = () => {
   // const [social, setSocial] = useState([]);
 
   useEffect(() => {
-    const componentDidMount = () => {
-      loadSharedData();
-      applyPickedLanguage(window.$primaryLanguage);
-    };
+    setResumeData(primaryDataJson);
+    setSharedData(sharedDataJson);
 
     const extractSkills = () =>
       getTechs()
         .then((e) => setSkills(e.data))
         .catch((err) => console.log(err.data));
-    const loadResumeFromPath = (path) => {
-      $.ajax({
-        url: path,
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-          //setState({ setResumeData: data });
-          setResumeData(data);
-        },
-        error: function (xhr, status, err) {
-          alert(err);
-        },
-      });
-    };
 
-    const loadSharedData = () => {
-      $.ajax({
-        url: `portfolio_shared_data.json`,
-        dataType: "json",
-        cache: false,
-        success: function (data) {
-          setSharedData(data);
-        },
-        error: function (xhr, status, err) {
-          alert(err);
-        },
-      });
-    };
+    const extractExperience = () =>
+      getExperience()
+        .then((e) => setExperience(e.data))
+        .catch((err) => console.log(err.data));
 
-    const applyPickedLanguage = (pickedLanguage) => {
-      document.documentElement.lang = pickedLanguage;
-      var resumePath = `res_primaryLanguage.json`;
-      loadResumeFromPath(resumePath);
-    };
+    const extractProjects = () =>
+      getProjects()
+        .then((e) => setProjects(e.data))
+        .catch((err) => console.log(err.data));
 
-    componentDidMount();
     extractExperience();
     extractProjects();
     extractSkills();
   }, []);
-
-  const extractExperience = () =>
-    getExperience()
-      .then((e) => setExperience(e.data))
-      .catch((err) => console.log(err.data));
-
-  const extractProjects = () =>
-    getProjects()
-      .then((e) => setProjects(e.data))
-      .catch((err) => console.log(err.data));
 
   const scrollBelow = () => {
     window.scrollTo(750, 750);
@@ -167,7 +131,7 @@ const App = () => {
           path="/experience/update/:slug"
           component={ExperienceUpdate}
         />
-        <Route exact path="/project" component={Project} />
+        <Route exact path="/project" component={ProjectAdmin} />
         <Route exact path="/project/create" component={ProjectCreate} />
       </Switch>
     </Suspense>

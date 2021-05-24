@@ -5,7 +5,7 @@ import ProjectCreateForm from "./ProjectCreateForm";
 import FileUpload from "./FileUpload";
 import { LoadingOutlined } from "@ant-design/icons";
 
-const ProjectCreate = () => {
+const ProjectCreate = (history) => {
   const initialState = {
     title: "",
     startDate: "",
@@ -21,13 +21,10 @@ const ProjectCreate = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const loadTechs = () =>
-      getTechs().then((t) => {
-        setValues({ ...values, technologies: t.data });
-        setTechOptions(t.data);
-      });
-    loadTechs();
-  }, [values]);
+    getTechs().then((t) => {
+      setTechOptions(t.data);
+    });
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +32,8 @@ const ProjectCreate = () => {
       .then((res) => {
         console.log(res);
         window.alert(`"${res.data.title}" is created`);
-        window.location.reload();
+        //window.location.reload();
+        history.push("/project");
       })
       .catch((err) => {
         console.log(err);

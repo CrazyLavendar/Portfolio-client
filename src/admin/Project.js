@@ -1,22 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { getProjects, deleteOneProject } from "./../functions/project";
-import { EditOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { PlusCircleOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 const Project = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
+    const loadingProjects = () => {
+      getProjects()
+        .then((e) => {
+          console.log(e.data);
+          setProjects(e.data);
+        })
+        .catch((err) => console.log(err.data));
+    };
     loadingProjects();
   }, []);
-
-  const loadingProjects = () => {
-    getProjects()
-      .then((e) => {
-        console.log(e.data);
-        setProjects(e.data);
-      })
-      .catch((err) => console.log(err.data));
-  };
 
   const deleteProject = (slug) => {
     deleteOneProject(slug)
@@ -72,14 +71,6 @@ const Project = () => {
                     alignItems: "center",
                   }}
                 >
-                  {" "}
-                  <Link to={`/project/update/${project.slug}`}>
-                    <EditOutlined
-                      style={{ fontSize: "25px" }}
-                      className="text-danger"
-                    />{" "}
-                    <br /> Edit
-                  </Link>
                   <button
                     className="btn btn-secondary"
                     onClick={() => deleteProject(project.slug)}
