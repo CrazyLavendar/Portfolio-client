@@ -7,8 +7,7 @@ const Project = () => {
 
   useEffect(() => {
     loadingProjects();
-    console.log(projects);
-  }, []);
+  }, [projects]);
 
   const loadingProjects = () => {
     getProjects()

@@ -9,10 +9,10 @@ const ProjectCreate = () => {
   const initialState = {
     title: "",
     startDate: "",
-    description:"",
+    description: "",
     images: [],
     url: "",
-    youtube:"",
+    youtube: "",
     technologies: [],
   };
 
@@ -21,14 +21,13 @@ const ProjectCreate = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const loadTechs = () =>
+      getTechs().then((t) => {
+        setValues({ ...values, technologies: t.data });
+        setTechOptions(t.data);
+      });
     loadTechs();
-  }, []);
-
-  const loadTechs = () =>
-    getTechs().then((t) => {
-      setValues({ ...values, technologies: t.data });
-      setTechOptions(t.data);
-    });
+  }, [values]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

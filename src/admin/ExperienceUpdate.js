@@ -19,20 +19,19 @@ const ExperienceUpdate = ({ match, history }) => {
   // const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const loadOneExperience = () => {
+      getExperienceOne(slug)
+        .then((res) => {
+          setValues(res.data);
+          console.log(res.data);
+        })
+        .catch((err) => {
+          console.log(err.data);
+          history.push("/");
+        });
+    };
     loadOneExperience();
-  }, [match, history, loadOneExperience()]);
-
-  const loadOneExperience = () => {
-    getExperienceOne(slug)
-      .then((res) => {
-        setValues(res.data);
-        console.log(res.data);
-      })
-      .catch((err) => {
-        console.log(err.data);
-        history.push("/");
-      });
-  };
+  }, [slug, history]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -29,81 +29,72 @@ const App = () => {
   const [skills, setSkills] = useState([]);
   const [resumeData, setResumeData] = useState({});
   const [sharedData, setSharedData] = useState({});
-  const [social, setSocial] = useState([]);
+  // const [social, setSocial] = useState([]);
 
   useEffect(() => {
+    const componentDidMount = () => {
+      loadSharedData();
+      applyPickedLanguage(window.$primaryLanguage);
+    };
+    const extractExperience = () =>
+      getExperience()
+        .then((e) => setExperience(e.data))
+        .catch((err) => console.log(err.data));
+
+    const extractProjects = () =>
+      getProjects()
+        .then((e) => setProjects(e.data))
+        .catch((err) => console.log(err.data));
+
+    const extractSkills = () =>
+      getTechs()
+        .then((e) => setSkills(e.data))
+        .catch((err) => console.log(err.data));
+    const loadResumeFromPath = (path) => {
+      $.ajax({
+        url: path,
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+          //setState({ setResumeData: data });
+          setResumeData(data);
+        },
+        error: function (xhr, status, err) {
+          alert(err);
+        },
+      });
+    };
+
+    const loadSharedData = () => {
+      $.ajax({
+        url: `portfolio_shared_data.json`,
+        dataType: "json",
+        cache: false,
+        success: function (data) {
+          // setState({ setSharedData: data });
+          setSharedData(data);
+          // document.title = `Document Title`;
+        },
+        error: function (xhr, status, err) {
+          alert(err);
+        },
+      });
+    };
+
+    const applyPickedLanguage = (pickedLanguage) => {
+      document.documentElement.lang = pickedLanguage;
+      var resumePath = `res_primaryLanguage.json`;
+      loadResumeFromPath(resumePath);
+    };
+
     componentDidMount();
     extractExperience();
     extractProjects();
     extractSkills();
-    loadSocialNetwork();
   }, []);
-
-  const extractExperience = () =>
-    getExperience()
-      .then((e) => setExperience(e.data))
-      .catch((err) => console.log(err.data));
-
-  const extractProjects = () =>
-    getProjects()
-      .then((e) => setProjects(e.data))
-      .catch((err) => console.log(err.data));
-
-  const extractSkills = () =>
-    getTechs()
-      .then((e) => setSkills(e.data))
-      .catch((err) => console.log(err.data));
-
-  const applyPickedLanguage = (pickedLanguage) => {
-    document.documentElement.lang = pickedLanguage;
-    var resumePath = `res_primaryLanguage.json`;
-    loadResumeFromPath(resumePath);
-  };
-
-  const componentDidMount = () => {
-    loadSharedData();
-    applyPickedLanguage(window.$primaryLanguage);
-  };
-
-  const loadResumeFromPath = (path) => {
-    $.ajax({
-      url: path,
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        //setState({ setResumeData: data });
-        setResumeData(data);
-      },
-      error: function (xhr, status, err) {
-        alert(err);
-      },
-    });
-  };
-
-  const loadSharedData = () => {
-    $.ajax({
-      url: `portfolio_shared_data.json`,
-      dataType: "json",
-      cache: false,
-      success: function (data) {
-        // setState({ setSharedData: data });
-        setSharedData(data);
-        // document.title = `Document Title`;
-      },
-      error: function (xhr, status, err) {
-        alert(err);
-      },
-    });
-  };
-
-  const loadSocialNetwork = () => {
-    setSocial(sharedData.basic_info);
-    console.log(social);
-  };
 
   const scrollBelow = () => {
     window.scrollTo(750, 750);
-    // document.getElementById("scroller").scroll(0, 0);
   };
 
   return (
@@ -123,12 +114,10 @@ const App = () => {
         className="col-md-12 mx-auto text-center language"
       >
         <span key="ScrollDown" className="m-2">
-          <a target="_blank" rel="noopener noreferrer">
-            <i
-              className="fas fa-angle-double-down"
-              style={{ fontSize: "175%" }}
-            ></i>
-          </a>
+          <i
+            className="fas fa-angle-double-down"
+            style={{ fontSize: "175%" }}
+          ></i>
         </span>
       </div>
       <About
