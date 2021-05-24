@@ -33,7 +33,7 @@ class Projects extends Component {
                     src={
                       projects.images[0]
                         ? projects.images[0].url
-                        : "/images/no-image.jpg"
+                        : process.env.PUBLIC_URL + "/images/no-image.jpg"
                     }
                     alt="projectImages"
                     height="230"
