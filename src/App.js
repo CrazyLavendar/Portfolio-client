@@ -62,9 +62,7 @@ const App = () => {
         dataType: "json",
         cache: false,
         success: function (data) {
-          // setState({ setSharedData: data });
           setSharedData(data);
-          // document.title = `Document Title`;
         },
         error: function (xhr, status, err) {
           alert(err);
@@ -98,6 +96,57 @@ const App = () => {
     window.scrollTo(750, 750);
   };
 
+  const Home = () => {
+    return (
+      <div>
+        {" "}
+        <Header sharedData={sharedData.basic_info} />
+        <div
+          onClick={scrollBelow}
+          className="col-md-12 mx-auto text-center language"
+        >
+          <span key="ScrollDown" className="m-2">
+            <i
+              className="fas fa-angle-double-down"
+              style={{ fontSize: "175%" }}
+            ></i>
+          </span>
+        </div>
+        <About
+          resumeBasicInfo={resumeData.basic_info}
+          sharedBasicInfo={sharedData.basic_info}
+        />
+        <Projects
+          resumeProjects={projects}
+          resumeBasicInfo={resumeData.basic_info}
+        />
+        <Skills sharedSkills={skills} resumeBasicInfo={resumeData.basic_info} />
+        <Experience
+          resumeExperience={experience}
+          resumeBasicInfo={resumeData.basic_info}
+        />
+        <Footer sharedBasicInfo={sharedData.basic_info} />
+        <span key="linkedin" className="fixed-bottom">
+          <a
+            style={{
+              fontSize: "165%",
+              position: "absolute",
+              bottom: "5px",
+              right: "5px",
+              margin: "5px",
+              padding: "0px",
+            }}
+            href="https://www.linkedin.com/in/jayamvimal/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
+          </a>
+        </span>{" "}
+      </div>
+    );
+  };
+
   return (
     <Suspense
       fallback={
@@ -108,54 +157,9 @@ const App = () => {
         </div>
       }
     >
-      <Header sharedData={sharedData.basic_info} />
-
-      <div
-        onClick={scrollBelow}
-        className="col-md-12 mx-auto text-center language"
-      >
-        <span key="ScrollDown" className="m-2">
-          <i
-            className="fas fa-angle-double-down"
-            style={{ fontSize: "175%" }}
-          ></i>
-        </span>
-      </div>
-      <About
-        resumeBasicInfo={resumeData.basic_info}
-        sharedBasicInfo={sharedData.basic_info}
-      />
-
-      <Projects
-        resumeProjects={projects}
-        resumeBasicInfo={resumeData.basic_info}
-      />
-      <Skills sharedSkills={skills} resumeBasicInfo={resumeData.basic_info} />
-
-      <Experience
-        resumeExperience={experience}
-        resumeBasicInfo={resumeData.basic_info}
-      />
-      <Footer sharedBasicInfo={sharedData.basic_info} />
-      <span key="linkedin" className="fixed-bottom">
-        <a
-          style={{
-            fontSize: "165%",
-            position: "absolute",
-            bottom: "5px",
-            right: "5px",
-            margin: "5px",
-            padding: "0px",
-          }}
-          href="https://www.linkedin.com/in/jayamvimal/"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <i className="fab fa-linkedin" style={{ fontSize: "200%" }}></i>
-        </a>
-      </span>
-
       <Switch>
+        <Route exact path="/" component={Home} />
+
         <Route exact path="/experience" component={ExperienceAdmin} />
         <Route exact path="/experience/create" component={ExperienceCreate} />
         <Route
